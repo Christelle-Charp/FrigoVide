@@ -11,6 +11,7 @@ export default function IngredientsProvider({children}){
     const [listIngredients, setListIngredients] = useState([]);
 
     function addIngredientToList() {
+
         const newIngredient = {
             id: Date.now(), // identifiant unique basé sur le timestamp
             nom: ingredient,
@@ -25,11 +26,11 @@ export default function IngredientsProvider({children}){
     }
 
     function deleteIngredient(idToDelete) {
-        setListIngredients(list.filter(ingredient => ingredient.id !== idToDelete));
+        setListIngredients(listIngredients.filter(ingredient => ingredient.id !== idToDelete));
     }
 
     return (
-        <IngredientsContext.Provider value={{ingredient, addIngredientToList, handleChange, deleteIngredient}}>
+        <IngredientsContext.Provider value={{ingredient, listIngredients, addIngredientToList, handleChange, deleteIngredient}}>
             {children}
         </IngredientsContext.Provider>
     )

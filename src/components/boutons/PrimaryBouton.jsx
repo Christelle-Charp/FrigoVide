@@ -2,10 +2,11 @@
 
 import React from 'react'
 
-export default function PrimaryBouton({texte}) {
+//il faut impérativement utiliser ...props pour que la fonction onClick s'applique sur le bouton
+export default function PrimaryBouton({children, ...props}) {
   return (
-    <button className='primary-btn'>
-        {texte}
+    <button {...props}className='primary-btn'>
+        {children}
     </button>
   )
 }
