@@ -5,9 +5,11 @@
  */
 
 import React from 'react'
+import RecetteList from '../components/listes/RecetteList'
 
 export default function Recettes() {
+    
   return (
-    <div>Recettes</div>
+    <RecetteList/>
   )
 }
