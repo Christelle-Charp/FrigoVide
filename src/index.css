@@ -1,0 +1,107 @@
+/*Déclaration des fonts*/
+@font-face {
+  font-family: "ADLaMDisplay-Regular";
+  src: url("/public/fonts/ADLaMDisplay-Regular.ttf");
+  font-weight:normal;
+}
+
+@font-face {
+  font-family: "Jura-Bold";
+  src: url("/public/fonts/Jura-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Jura-Regular";
+  src: url("/public/fonts/Jura-Regular.ttf");
+  font-weight:normal;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*Généralitée*/
+h1{
+  font-family: "ADLaMDisplay-Regular";
+  font-size: 42px;
+}
+
+a{
+  font-family: "Jura-Regular";
+  font-size: 16px;
+}
+
+span{
+  font-weight: bold;
+}
+
+.ecran-portable{
+  max-width: 500px;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff1ea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #1c0f07;
+  border: 6px solid #000000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contenair{
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-btn{
+  padding: 16px 42px;
+  background-color: #ff5900;
+  color: #ffffff;
+  border-radius: 8px;
+  border-left: 2px solid #000000;
+  border-top: 2px solid #000000;
+  border-right: 4px solid #000000;
+  border-bottom: 6px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.flex-column-centre{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/*Spécificté page accueil*/
+
+.accueil{
+
+  width: 65%;
+
+  p{
+    text-align: center;
+  }
+
+  .primary-btn{
+    margin-top: 2rem;
+  }
+}
