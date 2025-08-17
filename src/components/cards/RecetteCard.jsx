@@ -8,8 +8,8 @@ import { NavLink } from 'react-router'
 
 export default function RecetteCard({recette}) {
   return (
-    <NavLink
-    to={`/recetteDetail/${recette.id}`}>
+    <NavLink className="card-recette-link"
+    to={`/recette/${recette.id}`}>
         <div className='card-recette'>
             <img src={recette.image} alt={`photo de ${recette.nom}`} />
             <h4>{recette.nom}</h4>

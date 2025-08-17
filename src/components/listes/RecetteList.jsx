@@ -8,10 +8,13 @@ import { useRecettes } from '../../contexts/RecettesContext'
 
 export default function RecetteList() {
 
-  const {selectionRecettes} = useRecettes
+  const {selectionRecettes} = useRecettes()
+  console.log("Recettes sélectionnées :", selectionRecettes);
+
 
   return (
     <div className='contenair-recettes'>
+      
         {selectionRecettes.map((recette)=>(
             <RecetteCard
             key={recette.id}

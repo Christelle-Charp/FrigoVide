@@ -6,10 +6,25 @@
 
 import React from 'react'
 import RecetteList from '../components/listes/RecetteList'
+import { FiArrowLeft } from "react-icons/fi";
+import { NavLink } from 'react-router';
 
 export default function Recettes() {
     
   return (
-    <RecetteList/>
+    <div className='recettes'>
+      <div className='contenair'>
+        <div className='head'>
+          <NavLink
+            to="/ajouterIngredients">
+            <FiArrowLeft className='icone'/>
+          </NavLink>
+          <h3>Recettes sélectionnées</h3>
+        </div>
+        <RecetteList/>
+      </div>
+      
+    </div>
+    
   )
 }

@@ -11,9 +11,11 @@ import { useLocation, NavLink } from "react-router";
 export default function NavBar() {
     const localisation = useLocation()  //Hook pour savoir sur quelle page on se trouve
     const isAccueil = location.pathname === "/";    //Création de la variable pour savoir si on est sur la page d'accueil
-  
-    //si on est sur la page d'accueil, on ne retourne rien
-    if(isAccueil) return null;
+    const isRecette = location.pathname.startsWith("/recette/")
+    //si on est sur la page d'accueil ou recette, on ne retourne rien
+    if(isAccueil || isRecette) return null;
+
+    
 
     //Sinon, on retourne la navBar
     return (
