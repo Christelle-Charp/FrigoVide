@@ -5,9 +5,24 @@
  */
 
 import React from 'react'
+import { FiArrowLeft } from "react-icons/fi";
+import { NavLink } from 'react-router';
+import RecetteListFavoris from '../components/listes/RecetteListFavoris';
 
 export default function Favoris() {
   return (
-    <div>Favoris</div>
+    <div className='favoris'>
+      <div className='contenair'>
+        <div className='head'>
+          <NavLink
+            to="/ajouterIngredients">
+            <FiArrowLeft className='icone'/>
+          </NavLink>
+          <h3>Mes recettes favorites</h3>
+        </div>
+        <RecetteListFavoris/>
+      </div>
+
+    </div>
   )
 }

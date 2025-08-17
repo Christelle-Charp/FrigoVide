@@ -26,6 +26,15 @@ export default function RecettesProvider({children}) {
             .then(data => setRecettesAll(data));
     },[])
 
+    //Je récupère la liste des favoris dans le localstorage
+    useEffect(()=>{
+        const favorisLocal = localStorage.getItem('favoris');
+        if(favorisLocal){
+          const parsed = JSON.parse(favorisLocal);
+          setFavoriRecettes(parsed);
+        }
+      }, [])
+
     function filtrerRecettes(){
 
       console.log("🔍 Fonction filtrerRecettes appelée");
@@ -107,11 +116,22 @@ export default function RecettesProvider({children}) {
       console.log("📦 Recettes sélectionnées :", selection);
 
       setSelectionRecettes(selection)
+    }
 
+    function addFavoris(idToAdd){
+      const upDateFavori = [...favoriRecettes, idToAdd]
+      setFavoriRecettes(upDateFavori)
+      localStorage.setItem("favoris", JSON.stringify(upDateFavori))
+    }
+
+    function removeFavoris(idToDelete){
+      const upDateFavori = favoriRecettes.filter(id => id !== idToDelete)
+      setFavoriRecettes(upDateFavori);
+      localStorage.setItem("favoris", JSON.stringify(upDateFavori))
     }
       
   return (
-    <RecettesContext.Provider value={{recettesAll, selectionRecettes, favoriRecettes, filtrerRecettes}}>
+    <RecettesContext.Provider value={{recettesAll, selectionRecettes, favoriRecettes, filtrerRecettes, removeFavoris, addFavoris}}>
         {children}
     </RecettesContext.Provider>
   )
