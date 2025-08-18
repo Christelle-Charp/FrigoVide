@@ -17,9 +17,11 @@ export default function RecettesProvider({children}) {
     const[recettesAll, setRecettesAll] = useState([])
     const[selectionRecettes, setSelectionRecettes] = useState([])
     const[favoriRecettes, setFavoriRecettes] = useState([])
+    const nbFavori = favoriRecettes.length
 
     const{listIngredients} = useIngredients()
 
+    //Je récupère la liste de toutes les recettes
     useEffect(()=>{
         fetch('../recettes_cuisine.json')
             .then(response => response.json())
@@ -37,23 +39,17 @@ export default function RecettesProvider({children}) {
 
     function filtrerRecettes(){
 
-      console.log("🔍 Fonction filtrerRecettes appelée");
-
-
       // Vérifie si les recettes sont bien chargées
       if (!recettesAll || recettesAll.length === 0) {
-        console.warn("⚠️ recettesAll est vide ou non défini :", recettesAll);
         return;
       }
 
       // Vérifie les ingrédients sélectionnés
-      console.log("🧂 Ingrédients sélectionnés :", listIngredients);
+      console.log(" Ingrédients sélectionnés :", listIngredients);
 
 
       //Si ma liste d'ingredients est vide, ma selection est recettesAll
       if (listIngredients.length === 0) {
-        console.log("📋 Aucun ingrédient sélectionné, toutes les recettes sont affichées");
-
         setSelectionRecettes(recettesAll);
         return;
       }
@@ -66,7 +62,6 @@ export default function RecettesProvider({children}) {
       //1- j'enleve les majuscules de mes ingredients
       const normaliser = (str) => str.trim().toLowerCase()
       const nomsIngredients = listIngredients.map((i)=> normaliser(i.nom))
-      console.log("🔡 Noms des ingrédients normalisés :", nomsIngredients);
 
       // 2. Je crée un tableau vide pour stocker les recettes sélectionnées
       let selection = [];
@@ -83,10 +78,6 @@ export default function RecettesProvider({children}) {
 
         if(match){
           selection = [...selection, recette];
-          console.log(`✅ Recette ajoutée : ${recette.nom}`);
-        }else{
-          console.log(`❌ Aucun ingrédient trouvé dans : ${recette.nom}`);
-
         }
 
         /*
@@ -113,25 +104,33 @@ export default function RecettesProvider({children}) {
         }*/
       }
       //Je mets à jour mon state
-      console.log("📦 Recettes sélectionnées :", selection);
-
       setSelectionRecettes(selection)
     }
 
+    function isFavori(idRecette){
+      //Role: vérifier si l'id de la recette est dans la liste des favoris
+      //Retour: true si dans la liste, sinon false
+      return favoriRecettes.includes(idRecette)
+    }
+
     function addFavoris(idToAdd){
+      //Role: ajouter un favori à la liste de favori et mettre à jour le localStorage
+      //Retour: néant
       const upDateFavori = [...favoriRecettes, idToAdd]
       setFavoriRecettes(upDateFavori)
       localStorage.setItem("favoris", JSON.stringify(upDateFavori))
     }
 
     function removeFavoris(idToDelete){
+      //Role: supprimer un favori à la liste de favori et mettre à jour le localStorage
+      //Retour: néant
       const upDateFavori = favoriRecettes.filter(id => id !== idToDelete)
       setFavoriRecettes(upDateFavori);
       localStorage.setItem("favoris", JSON.stringify(upDateFavori))
     }
       
   return (
-    <RecettesContext.Provider value={{recettesAll, selectionRecettes, favoriRecettes, filtrerRecettes, removeFavoris, addFavoris}}>
+    <RecettesContext.Provider value={{recettesAll, selectionRecettes, favoriRecettes, filtrerRecettes, removeFavoris, addFavoris, isFavori, nbFavori}}>
         {children}
     </RecettesContext.Provider>
   )

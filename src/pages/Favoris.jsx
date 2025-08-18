@@ -15,7 +15,7 @@ export default function Favoris() {
       <div className='contenair'>
         <div className='head'>
           <NavLink
-            to="/ajouterIngredients">
+            to="/ajouter-ingredients">
             <FiArrowLeft className='icone'/>
           </NavLink>
           <h3>Mes recettes favorites</h3>

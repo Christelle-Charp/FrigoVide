@@ -17,7 +17,7 @@ export default function RecetteDetail({}) {
   //Je écupère l'id dans l'url
   const{id} = useParams();
   //Je récupère toutes les recettes
-  const {recettesAll, favoriRecettes, addFavoris, removeFavoris} = useRecettes()
+  const {recettesAll, favoriRecettes, addFavoris, removeFavoris, isFavori} = useRecettes()
   //Je cherche ma recette dans toutes les recettes
   const recette = recettesAll.find((r)=>r.id === parseInt(id));
 
@@ -25,10 +25,12 @@ export default function RecetteDetail({}) {
     return <p>Recette introuvable</p>
   }
 
-  const isFavori = favoriRecettes.includes(recette.id)
+  const favori = isFavori(recette.id)
 
   const handleFavoriClick = () =>{
-    if (isFavori){
+    //Role: ajouter la fonction correspondant en fonction de la présence de l'id de la recette dans la liste de favori
+    //retour: appeller la fonction removeFavori si dans les favori sinon la fonction addFavori
+    if (favori){
       removeFavoris(recette.id);
     }else{
       addFavoris(recette.id);
@@ -65,7 +67,7 @@ export default function RecetteDetail({}) {
             <div className='favori align'>
               <FiBookmark  className='icone'/>
               <button className='btn-favori' onClick={handleFavoriClick}>
-                {isFavori ? "supprimer des favoris" : "ajouter aux favoris"}
+                {favori ? "supprimer des favoris" : "ajouter aux favoris"}
               </button>
             </div>
           </div>

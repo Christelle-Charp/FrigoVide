@@ -15,10 +15,11 @@ import { useRecettes } from '../contexts/RecettesContext'
 export default function AjouterIngredients() {
     const {filtrerRecettes} = useRecettes()
     const navigate = useNavigate()
-    //fonction qui filtre la recherche et qui ensuite envoie sur la page de la liste des recettes
+    
     function lancerRecherche(){
-        filtrerRecettes();
-        navigate("/recettes");
+      //fonction qui filtre la recherche et qui ensuite envoie sur la page de la liste des recettes
+      filtrerRecettes();
+      navigate("/recettes");
     }
 
   return (

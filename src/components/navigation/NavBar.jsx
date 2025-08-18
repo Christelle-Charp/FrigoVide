@@ -7,15 +7,17 @@ import { FiHome } from "react-icons/fi"
 import { TfiMenuAlt } from "react-icons/tfi";
 import { FiBook } from "react-icons/fi";
 import { useLocation, NavLink } from "react-router";
+import { useRecettes } from "../../contexts/RecettesContext";
 
 export default function NavBar() {
     const localisation = useLocation()  //Hook pour savoir sur quelle page on se trouve
     const isAccueil = location.pathname === "/";    //Création de la variable pour savoir si on est sur la page d'accueil
     const isRecette = location.pathname.startsWith("/recette/")
+
+    const{nbFavori} = useRecettes()
+    
     //si on est sur la page d'accueil ou recette, on ne retourne rien
     if(isAccueil || isRecette) return null;
-
-    
 
     //Sinon, on retourne la navBar
     return (
@@ -42,7 +44,11 @@ export default function NavBar() {
               color: isActive ? "#ff5900" : "#ffffff"
             })}
           >
-            <FiBook className="icone" />
+            <div style={{position: "relative"}}>
+              <FiBook className="icone" />
+              <span className="pastille">{nbFavori}</span>
+            </div>
+            
           </NavLink>
         </nav>
   )

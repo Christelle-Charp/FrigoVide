@@ -16,7 +16,7 @@ export default function Recettes() {
       <div className='contenair'>
         <div className='head'>
           <NavLink
-            to="/ajouterIngredients">
+            to="/ajouter-ingredients">
             <FiArrowLeft className='icone'/>
           </NavLink>
           <h3>Recettes sélectionnées</h3>
