@@ -6,18 +6,22 @@
 
 import React from 'react'
 import { FiArrowLeft } from "react-icons/fi";
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import RecetteListFavoris from '../components/listes/RecetteListFavoris';
 
 export default function Favoris() {
+  const navigate = useNavigate()
   return (
     <div className='favoris'>
       <div className='contenair'>
         <div className='head'>
-          <NavLink
+          {/*<NavLink
             to="/ajouter-ingredients">
             <FiArrowLeft className='icone'/>
-          </NavLink>
+          </NavLink>*/}
+          <button onClick={()=>navigate(-1)} className='btn-retour'>
+            <FiArrowLeft className='icone'/>
+          </button>
           <h3>Mes recettes favorites</h3>
         </div>
         <RecetteListFavoris/>

@@ -15,13 +15,16 @@ export default function RecetteList() {
   return (
     <div className='contenair-recettes'>
       
-        {selectionRecettes.map((recette)=>(
+        {selectionRecettes.length === 0 ? (
+          <p>Aucune recette ne correspond à votre recherche.</p>
+        ) : (
+        selectionRecettes.map((recette)=>(
             <RecetteCard
             key={recette.id}
             recette={recette}/>
         ))
             
-        }
+        )}
         
     </div>
   )

@@ -25,7 +25,10 @@ export default function RecettesProvider({children}) {
     useEffect(()=>{
         fetch('../recettes_cuisine.json')
             .then(response => response.json())
-            .then(data => setRecettesAll(data));
+            .then(data => {
+              setRecettesAll(data)
+              setSelectionRecettes(data)  //Je charge toutes les recettes pour qu'elle s'affiche si pas de recherche faite 
+            });
     },[])
 
     //Je récupère la liste des favoris dans le localstorage
@@ -41,6 +44,7 @@ export default function RecettesProvider({children}) {
 
       // Vérifie si les recettes sont bien chargées
       if (!recettesAll || recettesAll.length === 0) {
+        <p>Aucune recette disponible</p>
         return;
       }
 
@@ -55,7 +59,7 @@ export default function RecettesProvider({children}) {
       }
 
       /**Je veux comparer la liste de mes ingredients nomsIngredients aux ingredients de chaque recette 
-       * et si tous les ingredients de ma liste sont dans la recette, je prends la recette et je la mets dans mon
+       * et si un des ingredients de ma liste est dans la recette, je prends la recette et je la mets dans mon
        * tableau selectionRecettes
        *   */
 
@@ -73,7 +77,7 @@ export default function RecettesProvider({children}) {
         const nomsIngRecette = recette.ingredients.map((ing) => normaliser(ing.nom))
         //5- Je vérifie si un des ingredients selectionnés est dans la recette
         const match = nomsIngredients.some((nomIngredients)=>
-          nomsIngRecette.some((ingRecette) => ingRecette.includes(nomIngredients))
+          nomsIngRecette.some((ingRecette) => ingRecette.startsWith(nomIngredients))
         )
 
         if(match){

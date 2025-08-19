@@ -116,6 +116,11 @@ nav{
   border: none;
 }
 
+.btn-retour{
+  text-decoration: none;
+  border: none;
+}
+
 .favori{
   color: #ff5900;
 }

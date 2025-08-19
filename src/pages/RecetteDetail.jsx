@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { FiArrowLeft } from "react-icons/fi";
-import { NavLink, useParams } from 'react-router';
+import { NavLink, useNavigate, useParams } from 'react-router';
 import { BiTimeFive } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
 import { PiThermometerHotFill } from "react-icons/pi";
@@ -21,6 +21,7 @@ export default function RecetteDetail({}) {
   //Je cherche ma recette dans toutes les recettes
   const recette = recettesAll.find((r)=>r.id === parseInt(id));
 
+   const navigate = useNavigate(); 
   if(!recette){
     return <p>Recette introuvable</p>
   }
@@ -41,10 +42,13 @@ export default function RecetteDetail({}) {
     <div className='recette-detail'>
       <div className='contenair'>
         <div className='head'>
-          <NavLink
+          {/*<NavLink
             to="/recettes">
             <FiArrowLeft className='icone'/>
-          </NavLink>
+          </NavLink>*/}
+          <button onClick={()=>navigate(-1)} className='btn-retour'>
+            <FiArrowLeft className='icone'/>
+          </button>
           <h3>{recette.nom}</h3>
         </div>
         <div className='presentation-recette'>
