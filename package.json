@@ -1,6 +1,7 @@
 {
   "name": "frigovide",
   "private": true,
+  "homepage": "https://christelle-charp.github.io/FrigoVide/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
