@@ -1,0 +1,7 @@
+services:
+  frigo-vide:
+    build: .
+    container_name: frigo-vide
+    ports:
+      - "3002:80"
+    restart: unless-stopped
